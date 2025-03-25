@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helping Hands - Servicios Profesionales</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafa;
+            color: #2d3748;
+            line-height: 1.6;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a8a 100%);
+            z-index: 1000;
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .left-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .left-section h1 {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .menu-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1001;
+        }
+
+        .right-section {
+            position: fixed;
+            top: 80px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .right-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .right-section ul li {
+            margin: 5px 0;
+        }
+
+        .right-section ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .right-section ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(55, 65, 81, 0.9), rgba(55, 65, 81, 0.9)), 
+                       url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            padding: 200px 20px;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+
+        .tarjeta:hover {
+            transform: scale(1.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #1E3A8A, #FFD700);
+        }
+
+        .about-description {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4B5563;
+        }
+
+        .contenedor-nosotros {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+
+        .caja {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .caja:hover {
+            transform: translateY(-5px);
+        }
+
+        .contacto {
+            background: linear-gradient(135deg, #1a365d 0%, #2d4a8a 100%);
+            padding: 60px 20px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: white;
+        }
+
+        form label {
+            color: black;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 5px;
+            color: black;
+            background: white;
+        }
+
+        .right-section {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            position: fixed;
+            top: 80px;
+            right: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #1E3A8A;
+            padding: 12px 30px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            background: #1a202c;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        #detalles {
+            display: none;
+            padding: 20px;
+            background: white;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .estrellas {
+            display: flex;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .estrella {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #ccc;
+            padding: 0 1px;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .estrella:hover,
+        .estrella.seleccionada {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header class="sticky-nav">
+        <div class="left-section">
+            <img src="attached_assets/Sin título_1742667132484.jpg" alt="Helping Hands Logo" class="logo">
+            <h1>Helping Hands</h1>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <nav class="right-section" id="menu">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#profesiones">Servicios</a></li>
+                <li><a href="#puntuacion">Puntuación</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+  </div>
+   <div class="contenedor-inicio">
+      <div class="caja">
+        <h2>¡Bienvenido a Helping Hands!</h2>
+        <p>En un mundo donde la colaboración y la solidaridad marcan la diferencia, Helping Hands nace con el propósito de conectar a personas con profesionales capacitados en diversas áreas, brindando soluciones eficientes y de calidad.</p>
+        <p>Ya sea que necesites asesoramiento, ayuda profesional o simplemente una mano amiga, estamos aquí para hacerte la vida más fácil.</p>
+        <p>¡Gracias por confiar en Helping Hands!</p>
+    </section>
+      </div>
+    <section id="nosotros" class="seccion">
+        <h2 class="section-title">Quiénes Somos</h2>
+        <div class="about-description">
+            <p>Helping Hands es una organización líder comprometida con brindar apoyo profesional integral, conectando a la comunidad con especialistas altamente calificados que transforman y mejoran la calidad de vida de nuestros usuarios.</p>
+        </div>
+        <div class="contenedor-nosotros">
+            <div class="caja">
+                <h3>Misión</h3>
+                <p>La empresa HELPING HANDS busca proporcionar servicios sociales de alta calidad y accesibles a todos los miembros de la comunidad, para mejorar su bienestar y calidad de vida. Unimos a profesionales de diferentes áreas para brindar apoyo integral y fomentar la autosuficiencia y el empoderamiento de aquellos que lo necesitan.</p>
+            </div>
+            <div class="caja">
+                <h3>Visión</h3>
+                <p>Nuestra visión es ser reconocidos como líderes en la prestación de servicios sociales integrales y accesibles, mejorando la vida de miles de personas en la comunidad. Queremos crear una red de apoyo comunitario sólida y sostenible, donde todos los miembros tengan acceso a los recursos y servicios necesarios para prosperar.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="profesiones">
+        <h2 class="section-title">Profesiones</h2>
+        <div class="contenedor">
+            <!-- Lista de profesiones -->
+            <div class="tarjeta" onclick="mostrarDetalles('chefs')">
+                <h3>Cocineros (Chefs)</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('enfermeros')">
+                <h3>Enfermeros/as</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('constructores')">
+                <h3>Maestros de Construcción</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('plomeros')">
+                <h3>Plomeros</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('electricistas')">
+                <h3>Electricistas</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('cerrajeros')">
+                <h3>Cerrajeros</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('generales')">
+                <h3>Servicios Generales</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('manicuristas')">
+                <h3>Manicuristas y Estilistas</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('domiciliarios')">
+                <h3>Domiciliarios</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('psicologos')">
+                <h3>Psicólogos</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('abogados')">
+                <h3>Abogados</h3>
+            </div>
+            <div class="tarjeta" onclick="mostrarDetalles('docentes')">
+                <h3>Docentes Particulares</h3>
+            </div>
+        </div>
+
+        <div id="detalles">
+            <h2 id="titulo-profesion"></h2>
+            <p id="descripcion-profesion"></p>
+            <h3>Profesionales Disponibles:</h3>
+            <ul id="lista-profesionales"></ul>
+            <button onclick="ocultarDetalles()">Volver</button>
+        </div>
+    </section>
+
+    <section id="puntuacion">
+        <h2 class="section-title">Puntuación de Profesiones</h2>
+        <div class="contenedor" id="puntuaciones"></div>
+    </section>
+
+    <section id="contacto" class="contacto">
+        <h2 style="color: #000;">Contacto</h2>
+        <p style="color: #000;">📧 <strong>Email:</strong> handshelping329@gmail.com</p>
+        <p style="color: #000;">📞 <strong>Teléfono:</strong> +57 324 836 6082</p>
+        <p style="color: #000;">📍 <strong>Dirección:</strong> San Juan de Rioseco, Cundinamarca, Colombia</p>
+
+        <a href="https://wa.me/573248366082" target="_blank" class="whatsapp-btn">
+            Chatear en WhatsApp
+        </a>
+
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Helping Hands - Servicios Profesionales</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for menu items
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href');
+                document.querySelector(sectionId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function mostrarDetalles(profesion) {
+            const titulo = document.getElementById('titulo-profesion');
+            const descripcion = document.getElementById('descripcion-profesion');
+            const listaProfesionales = document.getElementById('lista-profesionales');
+            const detalles = document.getElementById('detalles');
+
+            const datos = {
+                'chefs': {
+                    descripcion: 'Los cocineros (chefs) preparan y crean platos deliciosos en restaurantes y otros lugares.',
+                    profesionales: [
+                        { nombre: 'Carlos Ramírez', dias: 'Lunes a Viernes' },
+                        { nombre: 'María Pérez', dias: 'Sábados y Domingos' }
+                    ]
+                },
+                'enfermeros': {
+                    descripcion: 'Los enfermeros/as cuidan la salud de los pacientes en hospitales y clínicas.',
+                    profesionales: [
+                        { nombre: 'Ana Torres', dias: 'Lunes a Jueves' },
+                        { nombre: 'José Gómez', dias: 'Viernes a Domingo' }
+                    ]
+                },
+                'constructores': {
+                    descripcion: 'Los maestros de construcción trabajan en la edificación de estructuras y casas.',
+                    profesionales: [
+                        { nombre: 'Miguel Herrera', dias: 'Lunes a Viernes' }
+                    ]
+                },
+                'plomeros': {
+                    descripcion: 'Los plomeros instalan y reparan tuberías de agua y gas.',
+                    profesionales: [
+                        { nombre: 'Ricardo López', dias: 'Lunes a Sábado' }
+                    ]
+                },
+                'electricistas': {
+                    descripcion: 'Los electricistas se encargan de la instalación y mantenimiento del sistema eléctrico.',
+                    profesionales: [
+                        { nombre: 'Luis Díaz', dias: 'Martes y Jueves' }
+                    ]
+                },
+                'cerrajeros': {
+                    descripcion: 'Servicio 24/7 para apertura y cambios de cerraduras.',
+                    profesionales: [
+                        { nombre: 'Pedro Sánchez', dias: 'Lunes a Domingo (24/7)' },
+                        { nombre: 'Juan López', dias: 'Lunes a Sábado' }
+                    ]
+                },
+                'generales': {
+                    descripcion: 'Limpieza y mantenimiento de hogares y oficinas.',
+                    profesionales: [
+                        { nombre: 'Andrea Ramírez', dias: 'Lunes a Viernes' },
+                        { nombre: 'Carlos Herrera', dias: 'Sábados y Domingos' }
+                    ]
+                },
+                'manicuristas': {
+                    descripcion: 'Atención a domicilio para belleza y estética.',
+                    profesionales: [
+                        { nombre: 'Laura Gómez', dias: 'Martes a Sábado' },
+                        { nombre: 'Mariana Torres', dias: 'Lunes a Viernes' }
+                    ]
+                },
+                'domiciliarios': {
+                    descripcion: 'Mensajería, compras y entregas rápidas.',
+                    profesionales: [
+                        { nombre: 'Luis Pérez', dias: 'Lunes a Domingo' },
+                        { nombre: 'Sofía Martínez', dias: 'Lunes a Sábado' }
+                    ]
+                },
+                'psicologos': {
+                    descripcion: 'Atención individual y terapia familiar.',
+                    profesionales: [
+                        { nombre: 'Dr. Roberto Díaz', dias: 'Lunes a Viernes' },
+                        { nombre: 'Dra. Valeria Ruiz', dias: 'Martes y Jueves' }
+                    ]
+                },
+                'abogados': {
+                    descripcion: 'Asesoría legal en distintas áreas del derecho.',
+                    profesionales: [
+                        { nombre: 'Lic. Fernando Castro', dias: 'Lunes a Viernes' },
+                        { nombre: 'Lic. Patricia López', dias: 'Miércoles y Sábados' }
+                    ]
+                },
+                'docentes': {
+                    descripcion: 'Clases personalizadas en diversas materias.',
+                    profesionales: [
+                        { nombre: 'Prof. Daniel Rojas', dias: 'Lunes a Jueves' },
+                        { nombre: 'Prof. Carolina Méndez', dias: 'Viernes y Sábados' }
+                    ]
+                }
+            };
+
+            if (datos[profesion]) {
+                titulo.textContent = profesion.charAt(0).toUpperCase() + profesion.slice(1);
+                descripcion.textContent = datos[profesion].descripcion;
+                listaProfesionales.innerHTML = '';
+                datos[profesion].profesionales.forEach(pro => {
+                    let li = document.createElement('li');
+                    li.textContent = `${pro.nombre} - Atiende: ${pro.dias}`;
+                    listaProfesionales.appendChild(li);
+                });
+                document.querySelector('.contenedor').style.display = 'none';
+                detalles.style.display = 'block';
+            }
+        }
+
+        function ocultarDetalles() {
+            document.getElementById('detalles').style.display = 'none';
+            document.querySelector('.contenedor').style.display = 'grid';
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const profesiones = [
+                "chefs", "enfermeros", "constructores", "plomeros",
+                "electricistas", "cerrajeros", "generales", "manicuristas",
+                "domiciliarios", "psicologos", "abogados", "docentes"
+            ];
+
+            const criterios = ["Atención", "Rapidez", "Calidad", "Precio"];
+            const contenedorPuntuaciones = document.getElementById('puntuaciones');
+
+            profesiones.forEach(profesion => {
+                const tarjeta = document.createElement('div');
+                tarjeta.classList.add('tarjeta');
+                
+                const titulo = document.createElement('h3');
+                titulo.textContent = profesion.charAt(0).toUpperCase() + profesion.slice(1);
+                tarjeta.appendChild(titulo);
+
+                criterios.forEach(criterio => {
+                    const contenedorCriterio = document.createElement('div');
+                    contenedorCriterio.classList.add('criterio');
+                    contenedorCriterio.innerHTML = `<strong>${criterio}:</strong> `;
+
+                    const estrellasContainer = document.createElement('div');
+                    estrellasContainer.classList.add('estrellas');
+
+                    for (let i = 1; i <= 5; i++) {
+                        const estrella = document.createElement('button');
+                        estrella.classList.add('estrella');
+                        estrella.innerHTML = '★';
+                        estrella.dataset.value = i;
+
+                        estrella.addEventListener('click', function() {
+                            const valor = this.dataset.value;
+                            const estrellas = estrellasContainer.querySelectorAll('.estrella');
+                            
+                            estrellas.forEach(e => e.classList.remove('seleccionada'));
+                            for (let j = 0; j < valor; j++) {
+                                estrellas[j].classList.add('seleccionada');
+                            }
+                        });
+
+                        estrellasContainer.appendChild(estrella);
+                    }
+
+                    contenedorCriterio.appendChild(estrellasContainer);
+                    tarjeta.appendChild(contenedorCriterio);
+                });
+
+                contenedorPuntuaciones.appendChild(tarjeta);
+            });
+        });
+
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
